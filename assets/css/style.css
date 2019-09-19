@@ -1,0 +1,20 @@
+body{
+    font-family: 'BigBottomCartoonRegular';
+    font-weight: normal;
+    font-style: normal;
+    background-color: rgb(50, 205, 97);
+    
+
+}
+
+h1{
+    color:rgb(117, 0, 128);
+}
+
+input{
+    color:rgb(255, 0, 140);
+}
+
+label{
+    color:rgb(0, 174, 255);
+}
