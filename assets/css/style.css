@@ -4,6 +4,7 @@ body{
     font-style: normal;
     background-color: rgb(50, 205, 97);
     
+    
 
 }
 
@@ -12,6 +13,7 @@ h1{
 }
 
 input{
+    background-color: rgb(226, 223, 43);
     color:rgb(255, 0, 140);
 }
 
