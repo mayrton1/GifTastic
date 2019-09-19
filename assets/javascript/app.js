@@ -11,7 +11,7 @@ $(document).ready(function () {
 
         for (var i = 0; i < arrayToExecute.length; i++) {
             var a = $("<button>");
-            a.addclass(classToGenerate);
+            a.addClass(classToGenerate);
             a.attr("data-type", arrayToExecute[i]);
             a.text(arrayToExecute[i]);
             $(spaceToAddTo).append(a);
@@ -19,14 +19,14 @@ $(document).ready(function () {
     }
 
     //function to pull images from giphy API 
-    $(document.onabort("click", ".cartoon-button", function () {
+    $(document).on("click", ".cartoon-button", function () {
         $("#images").empty();
 
         $(".cartoon-button").removeClass("active");
         $(this).addclass("active");
 
         var type = $(this).attr("date-type");
-        var queryURL = "https://api.giphy.com/v1/gifs/search?api_key=j3YA34QeFY0DA4Os0xt2Vyt5wCJKRjSt&q=&limit=10&offset=0&rating=PG&lang=en";
+        var queryURL = "https://api.giphy.com/v1/gifs/search?q="+ type + "&api_key=j3YA34QeFY0DA4Os0xt2Vyt5wCJKRjSt&q=&limit=10&offset=0&rating=PG&lang=en";
 
         //Ajax code 
 
@@ -48,7 +48,7 @@ $(document).ready(function () {
 
                     var animation = results[i].images.fixed_height.url;
 
-                    var still = results[i].images.fixed_height.url;
+                    var still = results[i].images.fixed_height_still.url;
 
                     var cartoonImage = $("<img>");
 
@@ -56,9 +56,9 @@ $(document).ready(function () {
                     cartoonImage.attr("data-still", still);
                     cartoonImage.attr("data-animate", animated);
                     cartoonImage.attr("data-state", "still");
-                    cartoonImage.addclass("cartoon-image");
+                    cartoonImage.addClass("cartoon-image");
 
-                    cartoonDiv.append(a);
+                    cartoonDiv.append(p);
                     cartoonDiv.append(cartoonImage);
 
                     $("#images").append(cartoonDiv);
@@ -66,7 +66,7 @@ $(document).ready(function () {
 
                 }
             });
-    }));
+    });
 
     //hover to animate from still to animation
 
@@ -86,7 +86,16 @@ $(document).ready(function () {
 
 
     });
-        $("#add-cartoon")
+        $("#add-cartoon").on("click", function(event){
+            event.preventDefault();
+            var newCartoon =$("input").eq(0).val();
 
+            if (newCartoon.length > 2 ) {
+                cartoon.push(newCartoon);
+            }
 
-})
+            createButtons(cartoon, "cartoon-button", "#cartoon-buttons");
+        });
+
+        createButtons(cartoon, "cartoon-button", "#cartoon-buttons");
+    })
