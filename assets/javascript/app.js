@@ -1,11 +1,11 @@
-//creat array to hold the buttons 
+
 
 $(document).ready(function () {
 
-    var cartoons = ["scary", "funny", "sleepy", "bouncing"
+    var cartoons = ["he-man", "transformers", "rick and morty", "simpsons"
 
     ];
-    // This function will create the buttons and add to the page
+   
     function createButtons(arrayToUse, classToAdd, areaToAddTo) {
         $(areaToAddTo).empty();
 
@@ -18,17 +18,17 @@ $(document).ready(function () {
         }
     }
 
-    //function to pull images from giphy API 
+    
     $(document).on("click", ".cartoon-button", function () {
         $("#images").empty();
-        // event.preventDefault();
+        
         $(".cartoon-button").removeClass("active");
         $(this).addClass("active");
 
         var cartoons = $(this).attr("data-cartoons");
-        var queryURL = "https://api.giphy.com/v1/gifs/search?q=" + cartoons +  "&api_key=j3YA34QeFY0DA4Os0xt2Vyt5wCJKRjSt&q=cartoons&limit=10&offset=25&rating=PG&lang=en";
-
-        //Ajax code 
+        var queryURL = "https://api.giphy.com/v1/gifs/search?q=" + cartoons +  "&api_key=j3YA34QeFY0DA4Os0xt2Vyt5wCJKRjSt&limit=10&offset=25&rating=PG&lang=en";
+        
+        
 
         $.ajax({
             url: queryURL,
@@ -38,9 +38,7 @@ $(document).ready(function () {
 
             .then(function (response) {
 
-                console.log(queryURL);
-
-                console.log(response);
+            
                 var results = response.data;
 
                 for (var i = 0; i < results.length; i++) {
@@ -69,13 +67,12 @@ $(document).ready(function () {
 
                     $("#images").append(cartoonDiv);
 
-                    console.log(cartoonDiv);
+            
                 }
                 
             });
     });
 
-    //hover to animate from still to animation
 
     $(document).on("click",".cartoon-image",function(){
         var state = $(this).attr("data-state");
