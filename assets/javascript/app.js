@@ -2,7 +2,7 @@
 
 $(document).ready(function () {
 
-    var cartoon = ["Scary", "Slapstick", "Eyes bug out", "Bouncing"
+    var cartoon = ["scary", "funny", "sleepy", "bouncing"
 
     ];
     // This function will create the buttons and add to the page
@@ -19,14 +19,14 @@ $(document).ready(function () {
     }
 
     //function to pull images from giphy API 
-    $(document).on("click", ".cartoon-button", function () {
+    $(document).on("click", ".cartoon-button", function (event) {
         $("#images").empty();
-
+        // event.preventDefault();
         $(".cartoon-button").removeClass("active");
-        $(this).addclass("active");
+        $(this).addClass("active");
 
         var type = $(this).attr("date-type");
-        var queryURL = "https://api.giphy.com/v1/gifs/search?q="+ type + "&api_key=j3YA34QeFY0DA4Os0xt2Vyt5wCJKRjSt&q=&limit=10&offset=0&rating=PG&lang=en";
+        var queryURL = "https://api.giphy.com/v1/gifs/search?q=" + cartoon +  "&api_key=j3YA34QeFY0DA4Os0xt2Vyt5wCJKRjSt&q=cartoon&limit=10&offset=5&rating=PG&lang=en";
 
         //Ajax code 
 
@@ -37,14 +37,18 @@ $(document).ready(function () {
         })
 
             .then(function (response) {
+
+                console.log(queryURL);
+
+                console.log(response);
                 var results = response.data;
 
                 for (var i = 0; i < results.length; i++) {
-                    var cartoonDiv = $("<div class=\"cartoon-item\">");
+                    var cartoonDiv = $("<div>");
 
                     var rating = results[i].rating;
 
-                    var p = $("<p>").text("rating:" + rating);
+                    var p = $("<p>").text("Rating:" + rating);
 
                     var animation = results[i].images.fixed_height.url;
 
@@ -54,7 +58,7 @@ $(document).ready(function () {
 
                     cartoonImage.attr("src", still);
                     cartoonImage.attr("data-still", still);
-                    cartoonImage.attr("data-animate", animated);
+                    cartoonImage.attr("data-animate", animation);
                     cartoonImage.attr("data-state", "still");
                     cartoonImage.addClass("cartoon-image");
 
@@ -63,8 +67,9 @@ $(document).ready(function () {
 
                     $("#images").append(cartoonDiv);
 
-
+                    console.log(cartoonDiv);
                 }
+                
             });
     });
 
@@ -98,4 +103,4 @@ $(document).ready(function () {
         });
 
         createButtons(cartoon, "cartoon-button", "#cartoon-buttons");
-    })
+    });
