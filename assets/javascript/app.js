@@ -2,31 +2,31 @@
 
 $(document).ready(function () {
 
-    var cartoon = ["scary", "funny", "sleepy", "bouncing"
+    var cartoons = ["scary", "funny", "sleepy", "bouncing"
 
     ];
     // This function will create the buttons and add to the page
-    function createButtons(arrayToExecute, classToGenerate, spaceToAddTo) {
-        $(spaceToAddTo).empty();
+    function createButtons(arrayToUse, classToAdd, areaToAddTo) {
+        $(areaToAddTo).empty();
 
-        for (var i = 0; i < arrayToExecute.length; i++) {
+        for (var i = 0; i < arrayToUse.length; i++) {
             var a = $("<button>");
-            a.addClass(classToGenerate);
-            a.attr("data-type", arrayToExecute[i]);
-            a.text(arrayToExecute[i]);
-            $(spaceToAddTo).append(a);
+            a.addClass(classToAdd);
+            a.attr("data-cartoons", arrayToUse[i]);
+            a.text(arrayToUse[i]);
+            $(areaToAddTo).append(a);
         }
     }
 
     //function to pull images from giphy API 
-    $(document).on("click", ".cartoon-button", function (event) {
+    $(document).on("click", ".cartoon-button", function () {
         $("#images").empty();
         // event.preventDefault();
         $(".cartoon-button").removeClass("active");
         $(this).addClass("active");
 
-        var type = $(this).attr("date-type");
-        var queryURL = "https://api.giphy.com/v1/gifs/search?q=" + cartoon +  "&api_key=j3YA34QeFY0DA4Os0xt2Vyt5wCJKRjSt&q=cartoon&limit=10&offset=5&rating=PG&lang=en";
+        var cartoons = $(this).attr("data-cartoons");
+        var queryURL = "https://api.giphy.com/v1/gifs/search?q=" + cartoons +  "&api_key=j3YA34QeFY0DA4Os0xt2Vyt5wCJKRjSt&q=cartoons&limit=10&offset=25&rating=PG&lang=en";
 
         //Ajax code 
 
@@ -50,7 +50,7 @@ $(document).ready(function () {
 
                     var p = $("<p>").text("Rating:" + rating);
 
-                    var animation = results[i].images.fixed_height.url;
+                    var animated = results[i].images.fixed_height.url;
 
                     var still = results[i].images.fixed_height_still.url;
 
@@ -58,9 +58,11 @@ $(document).ready(function () {
 
                     cartoonImage.attr("src", still);
                     cartoonImage.attr("data-still", still);
-                    cartoonImage.attr("data-animate", animation);
+                    cartoonImage.attr("data-animate", animated);
                     cartoonImage.attr("data-state", "still");
                     cartoonImage.addClass("cartoon-image");
+
+                    
 
                     cartoonDiv.append(p);
                     cartoonDiv.append(cartoonImage);
@@ -96,11 +98,12 @@ $(document).ready(function () {
             var newCartoon =$("input").eq(0).val();
 
             if (newCartoon.length > 2 ) {
-                cartoon.push(newCartoon);
+                cartoons.push(newCartoon);
             }
 
-            createButtons(cartoon, "cartoon-button", "#cartoon-buttons");
+            createButtons(cartoons, "cartoon-button", "#cartoon-buttons");
         });
 
-        createButtons(cartoon, "cartoon-button", "#cartoon-buttons");
+       
+        createButtons(cartoons, "cartoon-button", "#cartoon-buttons");
     });

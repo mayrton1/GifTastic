@@ -20,3 +20,7 @@ input{
 label{
     color:rgb(0, 174, 255);
 }
+
+button input{
+ color:rgb(24, 14, 34);
+}
