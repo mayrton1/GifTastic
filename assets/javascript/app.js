@@ -26,7 +26,7 @@ $(document).ready(function () {
         $(this).addClass("active");
 
         var cartoons = $(this).attr("data-cartoons");
-        var queryURL = "https://api.giphy.com/v1/gifs/search?q=" + cartoons +  "&api_key=j3YA34QeFY0DA4Os0xt2Vyt5wCJKRjSt&limit=10&offset=25&rating=PG&lang=en";
+        var queryURL = "https://api.giphy.com/v1/gifs/search?q=" + cartoons +  "&api_key=j3YA34QeFY0DA4Os0xt2Vyt5wCJKRjSt&limit=10&offset=5&rating=PG&lang=en";
         
         
 

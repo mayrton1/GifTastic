@@ -21,6 +21,19 @@ label{
     color:rgb(0, 174, 255);
 }
 
-button input{
+.button input{
  color:rgb(24, 14, 34);
 }
+
+footer {
+    background: #666;
+    color: rgb(255, 255, 255);
+    padding: 30px o;
+    clear: both;
+    border-top: 8px solid #674aaa;
+    color: #cccccc;
+    font-family: 'BigBottomCartoonRegular';
+    font-weight: normal;
+    font-style: normal;
+    text-align: center;
+  }
